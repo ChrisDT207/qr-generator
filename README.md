@@ -4,7 +4,7 @@ A modern, fast, cross-platform desktop **QR Code Generator** built with **Python
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 ### 1. Flexible Input Section
 - **Multi-Type Templates:** Seamlessly switch between structured templates:
@@ -54,7 +54,7 @@ A modern, fast, cross-platform desktop **QR Code Generator** built with **Python
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 qr-code-generator/
@@ -98,7 +98,7 @@ qr-code-generator/
 
 ---
 
-## 📦 Installation & Setup
+## Installation & Setup
 
 ### 1. Install Dependencies
 ```bash
@@ -117,7 +117,7 @@ python main.py "https://github.com"
 
 ---
 
-## 🧪 Running Automated Tests
+## Running Automated Tests
 
 Run the full automated test suite:
 ```bash
@@ -127,7 +127,7 @@ python -m unittest discover tests
 
 ---
 
-## 🛠️ Building Standalone Windows Executable (.exe)
+## Building Standalone Windows Executable (.exe)
 
 Compile the application into an optimized, highly-compressed standalone Windows executable with no terminal pop-up (`dist/QRGenerator.exe` ~24.6 MB) and portable distribution package (`dist/QRGenerator-v2.0-win64.zip`):
 
