@@ -1,0 +1,9 @@
+# Core GUI Framework
+PyQt6>=6.6.0
+
+# Image Processing & QR Code Generation Engine
+qrcode[pil]>=7.4.2
+Pillow>=10.0.0
+
+# Executable Packaging Pipeline
+pyinstaller>=6.0.0
