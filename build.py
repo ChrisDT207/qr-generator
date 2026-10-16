@@ -258,13 +258,23 @@ def main() -> int:
     if not verify_executable(dist_dir):
         return 1
 
+    # Place executable in outermost layer (project root) for easy access
+    root_exe = os.path.join(root_dir, "QRGenerator.exe")
+    dist_exe = os.path.join(dist_dir, "QRGenerator.exe")
+    try:
+        shutil.copy2(dist_exe, root_exe)
+        print_success(f"Placed standalone executable in project root: {root_exe}")
+    except Exception as e:
+        print_warning(f"Could not copy executable to project root: {e}")
+
     # Step 6: Create compressed distribution archive
     create_compressed_archive(root_dir, dist_dir)
 
     print("\n" + "=" * 64)
-    print("  BUILD SUCCESSFUL! Standalone application & compressed package ready:")
-    print(f"  EXE: {os.path.join(dist_dir, 'QRGenerator.exe')}")
-    print(f"  ZIP: {os.path.join(dist_dir, 'QRGenerator-v2.0-win64.zip')}")
+    print("  BUILD SUCCESSFUL! Standalone application ready for use:")
+    print(f"  ROOT EXE: {root_exe}")
+    print(f"  DIST EXE: {dist_exe}")
+    print(f"  ZIP:      {os.path.join(dist_dir, 'QRGenerator-v2.0-win64.zip')}")
     print("=" * 64 + "\n")
     return 0
 
