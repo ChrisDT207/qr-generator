@@ -35,11 +35,19 @@ class TestGeneratorGUI(unittest.TestCase):
         self.assertIn("QR Code Generator Pro", self.window.windowTitle())
 
     def test_theme_toggle(self):
+        # Starts in dark mode by default
         self.assertTrue(self.window._is_dark_theme)
+        self.assertIn("#f8fafc", self.window.title_lbl.styleSheet())
+
+        # Switch to light mode: title becomes dark charcoal for maximum contrast on light background
         self.window._toggle_theme()
         self.assertFalse(self.window._is_dark_theme)
+        self.assertIn("#0f172a", self.window.title_lbl.styleSheet())
+
+        # Switch back to dark mode
         self.window._toggle_theme()
         self.assertTrue(self.window._is_dark_theme)
+        self.assertIn("#f8fafc", self.window.title_lbl.styleSheet())
 
     def test_input_widget(self):
         iw = self.window.input_widget

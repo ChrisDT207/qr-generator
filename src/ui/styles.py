@@ -31,6 +31,41 @@ QLabel.SectionTitle {
     font-weight: 600;
 }
 
+QLabel.SubSectionTitle {
+    color: #f8fafc;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QLabel.FieldLabel {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QLabel.MutedNote {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+QLabel#AppTitle {
+    color: #f8fafc;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QLabel#PresetLabel {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QLabel#LogoThumbPlaceholder {
+    background: #0f172a;
+    border-radius: 4px;
+    border: 1px dashed #334155;
+}
+
 QLabel.SubTitle {
     color: #94a3b8;
     font-size: 12px;
@@ -354,6 +389,41 @@ QLabel.SectionTitle {
     color: #0f172a;
     font-size: 15px;
     font-weight: 600;
+}
+
+QLabel.SubSectionTitle {
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QLabel.FieldLabel {
+    color: #334155;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QLabel.MutedNote {
+    color: #64748b;
+    font-size: 11px;
+}
+
+QLabel#AppTitle {
+    color: #0f172a;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QLabel#PresetLabel {
+    color: #475569;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QLabel#LogoThumbPlaceholder {
+    background: #f1f5f9;
+    border-radius: 4px;
+    border: 1px dashed #cbd5e1;
 }
 
 QLabel.SubTitle {

@@ -23,6 +23,7 @@ from PyQt6.QtWidgets import (
 )
 
 from ..engine.generator import QRCodeConfig
+from ..utils.window_theme import update_window_titlebar_theme
 from .customize_widget import CustomizeWidget
 from .icons import get_icon
 from .input_widget import InputWidget
@@ -117,20 +118,20 @@ class MainWindow(QMainWindow):
         title_icon = QLabel()
         title_icon.setPixmap(get_icon("qr-code", color="#10b981", size=24).pixmap(24, 24))
 
-        title_lbl = QLabel("QR Code Generator Pro")
-        title_lbl.setStyleSheet("font-size: 16px; font-weight: 700; color: #f8fafc;")
+        self.title_lbl = QLabel("QR Code Generator Pro")
+        self.title_lbl.setObjectName("AppTitle")
 
         version_badge = QLabel("v2.0")
         version_badge.setProperty("class", "BadgeFormat")
 
         layout.addWidget(title_icon)
-        layout.addWidget(title_lbl)
+        layout.addWidget(self.title_lbl)
         layout.addWidget(version_badge)
         layout.addStretch()
 
         # Quick Samples Dropdown
-        samples_lbl = QLabel("Load Preset:")
-        samples_lbl.setStyleSheet("color: #94a3b8; font-weight: 600; font-size: 12px;")
+        self.samples_lbl = QLabel("Load Preset:")
+        self.samples_lbl.setObjectName("PresetLabel")
         self.samples_combo = QComboBox()
         self.samples_combo.addItem("Select Example...", "")
         self.samples_combo.addItem("GitHub (URL)", "https://github.com/google")
@@ -139,7 +140,7 @@ class MainWindow(QMainWindow):
         self.samples_combo.addItem("Email Feedback", "mailto:feedback@example.com?subject=Great%20App")
         self.samples_combo.currentIndexChanged.connect(self._on_preset_selected)
 
-        layout.addWidget(samples_lbl)
+        layout.addWidget(self.samples_lbl)
         layout.addWidget(self.samples_combo)
 
         # Theme Switcher
@@ -192,13 +193,37 @@ class MainWindow(QMainWindow):
         if payload:
             self.input_widget.set_payload(payload)
 
+    def showEvent(self, event) -> None:
+        """Ensure native title bar and min/max/close buttons match theme on initial window display."""
+        super().showEvent(event)
+        self._update_window_titlebar_theme()
+
+    def _update_window_titlebar_theme(self) -> None:
+        """Synchronize the Windows OS title bar, caption buttons (min/max/close), and colors."""
+        try:
+            hwnd = int(self.winId())
+            update_window_titlebar_theme(hwnd, self._is_dark_theme)
+        except Exception as e:
+            logger.debug("Could not apply titlebar theme: %s", e)
+
     def _apply_theme(self) -> None:
         theme_qss = DARK_THEME if self._is_dark_theme else LIGHT_THEME
         self.setStyleSheet(theme_qss)
 
+        # Explicitly ensure high-contrast colors for title and preset label across both themes
+        title_color = "#f8fafc" if self._is_dark_theme else "#0f172a"
+        self.title_lbl.setStyleSheet(f"font-size: 16px; font-weight: 700; color: {title_color};")
+
+        preset_color = "#94a3b8" if self._is_dark_theme else "#475569"
+        self.samples_lbl.setStyleSheet(f"font-size: 12px; font-weight: 600; color: {preset_color};")
+
         icon_name = "sun" if self._is_dark_theme else "moon"
         icon_color = "#94a3b8" if self._is_dark_theme else "#475569"
         self.theme_btn.setIcon(get_icon(icon_name, color=icon_color, size=18))
+        self.about_btn.setIcon(get_icon("target", color=icon_color, size=18))
+
+        # Synchronize Windows title bar and min/max/close buttons
+        self._update_window_titlebar_theme()
 
     def _toggle_theme(self) -> None:
         self._is_dark_theme = not self._is_dark_theme

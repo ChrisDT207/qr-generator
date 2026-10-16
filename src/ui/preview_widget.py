@@ -132,7 +132,7 @@ class PreviewWidget(QFrame):
         # Multiplier row
         scale_row = QHBoxLayout()
         scale_lbl = QLabel("Export Quality / Size:")
-        scale_lbl.setStyleSheet("color: #94a3b8; font-weight: 600; font-size: 12px;")
+        scale_lbl.setProperty("class", "FieldLabel")
 
         self.scale_combo = QComboBox()
         self.scale_combo.addItem("1× Standard (Screen / Web)", 1)

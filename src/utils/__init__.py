@@ -3,6 +3,7 @@
 from .resource_finder import get_resource_path, init_runtime_environment, is_frozen
 from .templates import format_email, format_sms, format_tel, format_vcard, format_wifi
 from .url_helper import is_valid_url, normalize_url, open_url
+from .window_theme import update_window_titlebar_theme
 
 __all__ = [
     "get_resource_path",
@@ -16,4 +17,5 @@ __all__ = [
     "is_valid_url",
     "normalize_url",
     "open_url",
+    "update_window_titlebar_theme",
 ]

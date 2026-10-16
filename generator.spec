@@ -62,6 +62,7 @@ hiddenimports = [
     "src.utils.resource_finder",
     "src.utils.templates",
     "src.utils.url_helper",
+    "src.utils.window_theme",
 ]
 
 # 4. Exclude unnecessary heavy packages to minimize binary size

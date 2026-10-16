@@ -80,7 +80,7 @@ class CustomizeWidget(QFrame):
 
         # 2. Error Correction Dropdown
         ec_lbl = QLabel("Error Correction:")
-        ec_lbl.setStyleSheet("font-weight: 600; color: #94a3b8;")
+        ec_lbl.setProperty("class", "FieldLabel")
         self.ec_combo = QComboBox()
         self.ec_combo.addItem("Medium (~15% Recovery)", "M")
         self.ec_combo.addItem("Low (~7% Recovery)", "L")
@@ -93,7 +93,7 @@ class CustomizeWidget(QFrame):
 
         # 3. Box Size Slider
         bs_lbl = QLabel("Module Box Size:")
-        bs_lbl.setStyleSheet("font-weight: 600; color: #94a3b8;")
+        bs_lbl.setProperty("class", "FieldLabel")
         bs_layout = QHBoxLayout()
         self.bs_slider = QSlider(Qt.Orientation.Horizontal)
         self.bs_slider.setRange(4, 24)
@@ -109,7 +109,7 @@ class CustomizeWidget(QFrame):
 
         # 4. Border Margin Slider
         border_lbl = QLabel("Border Margin:")
-        border_lbl.setStyleSheet("font-weight: 600; color: #94a3b8;")
+        border_lbl.setProperty("class", "FieldLabel")
         border_layout = QHBoxLayout()
         self.border_slider = QSlider(Qt.Orientation.Horizontal)
         self.border_slider.setRange(0, 8)
@@ -133,7 +133,7 @@ class CustomizeWidget(QFrame):
         colors_layout.setSpacing(8)
 
         colors_title = QLabel("Color Palette")
-        colors_title.setStyleSheet("font-weight: 600; font-size: 13px; color: #f8fafc;")
+        colors_title.setProperty("class", "SubSectionTitle")
         colors_layout.addWidget(colors_title)
 
         pickers_layout = QHBoxLayout()
@@ -142,7 +142,7 @@ class CustomizeWidget(QFrame):
         # Foreground Color
         fg_col = QVBoxLayout()
         fg_lbl = QLabel("Code Modules:")
-        fg_lbl.setStyleSheet("color: #94a3b8; font-size: 11px;")
+        fg_lbl.setProperty("class", "FieldLabel")
         fg_picker_row = QHBoxLayout()
         self.fg_swatch = ColorSwatchButton(self._fg_color)
         self.fg_swatch.clicked.connect(self._pick_fg_color)
@@ -157,7 +157,7 @@ class CustomizeWidget(QFrame):
         # Background Color
         bg_col = QVBoxLayout()
         bg_lbl = QLabel("Background:")
-        bg_lbl.setStyleSheet("color: #94a3b8; font-size: 11px;")
+        bg_lbl.setProperty("class", "FieldLabel")
         bg_picker_row = QHBoxLayout()
         self.bg_swatch = ColorSwatchButton(self._bg_color)
         self.bg_swatch.clicked.connect(self._pick_bg_color)
@@ -184,7 +184,7 @@ class CustomizeWidget(QFrame):
         presets_layout = QHBoxLayout()
         presets_layout.setSpacing(6)
         presets_lbl = QLabel("Presets:")
-        presets_lbl.setStyleSheet("color: #64748b; font-size: 11px;")
+        presets_lbl.setProperty("class", "MutedNote")
         presets_layout.addWidget(presets_lbl)
 
         palette_presets = [
@@ -215,7 +215,7 @@ class CustomizeWidget(QFrame):
 
         logo_header = QHBoxLayout()
         logo_title = QLabel("Center Logo Overlay (Optional)")
-        logo_title.setStyleSheet("font-weight: 600; font-size: 13px; color: #f8fafc;")
+        logo_title.setProperty("class", "SubSectionTitle")
         logo_header.addWidget(logo_title)
         logo_header.addStretch()
 
@@ -231,7 +231,7 @@ class CustomizeWidget(QFrame):
         logo_ctrl_row = QHBoxLayout()
         self.logo_thumb = QLabel()
         self.logo_thumb.setFixedSize(32, 32)
-        self.logo_thumb.setStyleSheet("background: #0f172a; border-radius: 4px; border: 1px dashed #334155;")
+        self.logo_thumb.setObjectName("LogoThumbPlaceholder")
         self.logo_thumb.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.logo_btn = QPushButton("Choose Logo Image...")
@@ -239,7 +239,7 @@ class CustomizeWidget(QFrame):
         self.logo_btn.clicked.connect(self._browse_logo)
 
         self.logo_name_lbl = QLabel("No logo selected")
-        self.logo_name_lbl.setStyleSheet("color: #94a3b8; font-size: 11px;")
+        self.logo_name_lbl.setProperty("class", "MutedNote")
 
         logo_ctrl_row.addWidget(self.logo_thumb)
         logo_ctrl_row.addWidget(self.logo_btn)
